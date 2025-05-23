@@ -1,0 +1,129 @@
+<!-- resources/views/admin/dashboard.blade.php -->
+@extends('layouts.app')
+
+@section('title', 'Admin Dashboard')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h2>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3>{{ $totalStudios }}</h3>
+                            <p class="mb-0">Total Studio</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-building fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3>{{ $totalBookings }}</h3>
+                            <p class="mb-0">Total Booking</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-calendar-check fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3>{{ $totalCustomers }}</h3>
+                            <p class="mb-0">Total Customer</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3>Rp {{ number_format($monthlyRevenue, 0, ',', '.') }}</h3>
+                            <p class="mb-0">Pendapatan Bulan Ini</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-money-bill-wave fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Bookings -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-clock"></i> Booking Terbaru</h5>
+                </div>
+                <div class="card-body">
+                    @if($recentBookings->count() > 0)
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kode Booking</th>
+                                        <th>Customer</th>
+                                        <th>Studio</th>
+                                        <th>Tanggal</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentBookings as $booking)
+                                    <tr>
+                                        <td>{{ $booking->booking_code }}</td>
+                                        <td>{{ $booking->user->name }}</td>
+                                        <td>{{ $booking->studio->name }}</td>
+                                        <td>{{ $booking->booking_date->format('d/m/Y') }}</td>
+                                        <td>
+                                            <span class="badge bg-{{ $booking->status_badge }}">
+                                                {{ ucfirst($booking->status) }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $booking->formatted_total_price }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <p class="text-muted">Belum ada booking.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
