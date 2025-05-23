@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     @auth
-                        @if(auth()->user()->isAdmin())
+                        @if(auth()->user()->role === 'admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
