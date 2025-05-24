@@ -38,3 +38,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Reports
     Route::get('/reports', [AdminBookingController::class, 'reports'])->name('reports');
 });
+
+Route::middleware(['auth', 'customer'])->prefix('customer')->name('customer.')->group(function () {
+    Route::get('/dashboard', [CustomerDashboard::class, 'index'])->name('dashboard');
+    
+    // Studios
+    Route::get('/studios', [CustomerStudioController::class, 'index'])->name('studios.index');
+    Route::get('/studios/{studio}', [CustomerStudioController::class, 'show'])->name('studios.show');
+    Route::get('/studios/{studio}/availability', [CustomerStudioController::class, 'checkAvailability']);
+    
+    // Bookings
+    Route::get('/bookings', [CustomerBookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/create/{studio}', [CustomerBookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings', [CustomerBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/{booking}', [CustomerBookingController::class, 'show'])->name('bookings.show');
+    Route::patch('/bookings/{booking}/upload-payment', [CustomerBookingController::class, 'uploadPayment'])->name('bookings.upload-payment');
+});

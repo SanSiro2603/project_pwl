@@ -39,16 +39,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.bookings.index') }}">Kelola Booking</a>
                             </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('studios.index') }}">Studio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('bookings.index') }}">Booking Saya</a>
-                            </li>
+                        @elseif(auth()->user()->role === 'customer')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('customer.dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('customer.studios.index') }}">Studio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('customer.bookings.index') }}">Booking Saya</a>
+                        </li>
                         @endif
                     @endauth
                 </ul>
