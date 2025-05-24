@@ -30,15 +30,19 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <span class="nav-link text-white">Halo, {{ Auth::user()->name }}</span>
-                </li>
-                <li class="nav-item">
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger">Logout</button>
-                    </form>
-                </li>
+                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Halo
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
             </ul>
         </div>
     </div>
