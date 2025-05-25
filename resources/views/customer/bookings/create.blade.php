@@ -6,7 +6,7 @@
 <div class="container">
     <h2>Booking Studio: {{ $studio->name }}</h2>
 
-    <form action="{{ route('bookings.store') }}" method="POST">
+    <form action="{{ route('customer.bookings.store') }}" method="POST">
         @csrf
         <input type="hidden" name="studio_id" value="{{ $studio->id }}">
 

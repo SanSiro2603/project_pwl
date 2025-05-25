@@ -172,4 +172,15 @@ class BookingController extends Controller
         return redirect()->back()->with('success', 'Booking berhasil diselesaikan.');
     }
     
+    public function updateStatus(Request $request, Booking $booking)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,confirmed,cancelled',
+        ]);
+    
+        $booking->status = $request->status;
+        $booking->save();
+    
+        return redirect()->back()->with('success', 'Status booking berhasil diperbarui.');
+    }
 }
