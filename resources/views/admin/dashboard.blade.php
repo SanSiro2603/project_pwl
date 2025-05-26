@@ -23,7 +23,7 @@
                             <p class="mb-0">Total Studio</p>
                         </div>
                         <div class="align-self-center">
-                            <i class="fas fa-building fa-2x"></i>
+                            <i class="bi bi-buildings"style="font-size:40px"></i>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             <p class="mb-0">Total Booking</p>
                         </div>
                         <div class="align-self-center">
-                            <i class="fas fa-calendar-check fa-2x"></i>
+                            <i class="bi bi-file-earmark-plus-fill" style="font-size:40px"></i>
                         </div>
                     </div>
                 </div>
