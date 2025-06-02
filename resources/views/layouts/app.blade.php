@@ -41,15 +41,7 @@
                                 <a class="nav-link" href="{{ route('admin.bookings.index') }}">Kelola Booking</a>
                             </li>
                         @elseif(auth()->user()->role === 'customer')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer.dashboard') }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer.studios.index') }}">Studio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer.bookings.index') }}">Booking Saya</a>
-                        </li>
+                        
                         @endif
                     @endauth
                 </ul>
@@ -63,19 +55,7 @@
                             <a class="nav-link" href="{{ route('register') }}">Daftar</a>
                         </li>
                     @else
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle" style ="font-size: 25px;"></i> {{ Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                        
                     @endguest
                 </ul>
             </div>
