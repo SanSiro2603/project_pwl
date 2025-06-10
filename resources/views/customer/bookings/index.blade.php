@@ -41,6 +41,7 @@
                         <th>Durasi (jam)</th>
                         <th>Total Harga</th>
                         <th>Status</th>
+                        <th>Aksi</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,16 @@
                                 <span class="badge bg-secondary">{{ ucfirst($booking->status) }}</span>
                             @endif
                         </td>
+                        <td>
+                            @if ($booking->status === 'pending')
+                                <a href="{{ url('/customer/bookings/' . $booking->id . '/pay') }}" class="btn btn-sm btn-primary">Bayar</a>
+
+                            @elseif ($booking->status === 'confirmed')
+                                <span class="text-success fw-bold">Sudah Dibayar</span>
+                            @else
+                                <span class="text-muted">-</span>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -73,33 +84,5 @@
     @endif
 </div>
 
-<!-- Custom CSS for quick action buttons -->
-<style>
-.quick-action {
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 0.5rem;
-    padding: 0.625rem 1.5rem;
-    font-weight: 600;
-}
-.quick-action:hover {
-    color: #fff !important;
-}
-.quick-action[data-bg="primary"]:hover {
-    background-color: #0d6efd !important;
-    border-color: #0d6efd !important;
-}
-.quick-action[data-bg="success"]:hover {
-    background-color: #198754 !important;
-    border-color: #198754 !important;
-}
-.quick-action[data-bg="warning"]:hover {
-    background-color: #ffc107 !important;
-    border-color: #ffc107 !important;
-}
-.quick-action.active {
-    background-color: var(--bs-warning);
-    color: #212529 !important;
-    font-weight: 700;
-}
-</style>
+
 @endsection

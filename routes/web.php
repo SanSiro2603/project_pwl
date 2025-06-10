@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
 use App\Http\Controllers\Customer\StudioController as CustomerStudioController;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
+use App\Http\Controllers\Customer\PaymentController;
 
 // Public Routes
 Route::get('/', function () {
@@ -57,4 +58,8 @@ Route::middleware(['auth', 'customer'])->prefix('customer')->name('customer.')->
     
     Route::get('/bookings/{booking}', [CustomerBookingController::class, 'show'])->name('bookings.show');
     Route::patch('/bookings/{booking}/upload-payment', [CustomerBookingController::class, 'uploadPayment'])->name('bookings.upload-payment');
+    Route::get('/bookings/{booking}/pay', [PaymentController::class, 'pay'])->name('customer.bookings.pay');
 });
+
+// Gunakan api.php agar tidak kena CSRF
+Route::post('/midtrans/callback', [\App\Http\Controllers\Payment\MidtransCallbackController::class, 'handle']);

@@ -71,5 +71,17 @@ class BookingController extends Controller
     return redirect()->route('customer.bookings.index')
                      ->with('success', 'Booking berhasil dibuat.');
 }
+public function pay($id)
+{
+    $booking = Booking::findOrFail($id);
+
+    // Cek apakah status masih pending
+    if ($booking->status !== 'pending') {
+        return redirect()->route('customer.bookings.index')->with('error', 'Booking sudah dibayar atau tidak valid.');
+    }
+
+    // Redirect ke halaman pembayaran Midtrans atau sejenisnya
+    return view('customer.bookings.pay', compact('booking'));
+}
 
 }
