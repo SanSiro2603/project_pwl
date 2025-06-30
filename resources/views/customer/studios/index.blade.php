@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="mb-4 fw-bold">🎬 Studio Tersedia</h1>
+    <h1 class="mb-4 fw-bold"> Studio Tersedia</h1>
 
     <!-- Tombol Aksi Cepat -->
     <div class="d-flex justify-content-center flex-wrap gap-3 mb-5">

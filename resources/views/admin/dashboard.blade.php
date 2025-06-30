@@ -7,7 +7,27 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="fw-bold text-primary">Selamat Datang, {{ Auth::user()->name }}! 👋</h1>
+
+    <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ Auth::user()->name }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUserMenu">
+            <li>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+            </li>
+        </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </div>
+</div>
+
             <hr>
         </div>
     </div>
